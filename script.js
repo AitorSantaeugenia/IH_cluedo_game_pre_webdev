@@ -7,9 +7,9 @@ let mrGreen = {
 	color: 'green',
 	description: 'He has a lot of connections',
 	age: 45,
-	image: 'https://pbs.twimg.com/profile_images/506787499331428352/65jTv2uC.jpeg',
+	image: './img/jacob_green.png',
 	occupation: 'Entrepreneur'
-};
+}; //https://i.imgur.com/qoEcCH3.png
 
 let drOrchid = {
 	nickname: 'drOrchid',
@@ -19,9 +19,9 @@ let drOrchid = {
 	color: 'white',
 	description: 'PhD in plant toxicology. Adopted daughter of Mr. Boddy',
 	age: 26,
-	image: 'http://www.radiotimes.com/uploads/images/Original/111967.jpg',
+	image: './img/drorchid.png',
 	ocupation: 'Scientist'
-};
+}; //https://i.imgur.com/udUFegD.png
 
 let profPlum = {
 	nickname: 'profPlum',
@@ -31,9 +31,9 @@ let profPlum = {
 	color: 'purple',
 	description: 'Billionare video game designer',
 	age: 22,
-	image: 'https://metrouk2.files.wordpress.com/2016/07/professor-plum.jpg',
+	image: './img/victor_plum.png',
 	occupation: 'Designer'
-};
+}; //https://i.imgur.com/v0KH0vw.png
 
 let missScarlet = {
 	nickname: 'missScarlet',
@@ -43,9 +43,9 @@ let missScarlet = {
 	color: 'red',
 	description: 'She is an A-list movie star with a dark past',
 	age: 31,
-	image: 'https://metrouk2.files.wordpress.com/2016/07/miss-scarlett.jpg',
+	image: './img/kasandra_scarlet.png',
 	occupation: 'Actor'
-};
+}; //https://i.imgur.com/IUUs0M4.png
 
 let mrsPeacock = {
 	nickname: 'mrsPeacock',
@@ -55,9 +55,9 @@ let mrsPeacock = {
 	color: 'blue',
 	description: 'She is from a wealthy family and uses her status and money to earn popularity',
 	age: 36,
-	image: 'https://metrouk2.files.wordpress.com/2016/07/mrs-peacock.jpg',
+	image: './img/eleanor_peacock.png',
 	occupation: 'Socialité'
-};
+}; //https://i.imgur.com/fCYZ02I.png
 
 let mrMustard = {
 	nickname: 'mrMustard',
@@ -67,9 +67,9 @@ let mrMustard = {
 	color: 'yellow',
 	description: 'He is a former football player who tries to get by on his former glory',
 	age: 62,
-	image: 'https://metrouk2.files.wordpress.com/2016/07/colonel-mustard.jpg',
+	image: './img/jack_mustard.png',
 	occupation: 'Retired Football player'
-};
+}; //https://i.imgur.com/YAyNqjQ.png
 
 // Rooms' Collection
 let diningRoom = { name: 'Dinning Room' };
@@ -151,14 +151,6 @@ let roomsArray = [
 	patio
 ];
 
-/*
-let randomRoom = roomsArray[Math.floor(Math.random() * roomsArray.length)];
-let randomWeapon = weaponsArray[Math.floor(Math.random() * weaponsArray.length)];
-let randomSuspect = suspectsArray[Math.floor(Math.random() * suspectsArray.length)];
-*/
-
-//console.log(randomSuspect, randomRoom, randomWeapon);
-
 // Gets random item from each array and constructs the mystery
 function pickMystery() {
 	let suspect = suspectsArray[Math.floor(Math.random() * suspectsArray.length)];
@@ -170,22 +162,63 @@ function pickMystery() {
 
 let mystery = pickMystery(); // Who killed mr.boddy with what in which room...
 
-/*
-console.log(mystery);
-console.log(
-mystery.suspect.name,
-  mystery.weapon.name,
-  mystery.room.name
-);
-*/
-showArrays(suspectsArray);
-showArrays(weaponsArray);
-showArrays(roomsArray);
+// functions showing all the information to play
+showArraysSuspect(suspectsArray);
+showArraysRoom(weaponsArray);
+showArraysWeapon(roomsArray);
 
-function showArrays(arr) {
-	console.log(arr);
-
+//Loops through all of our items and show each items name
+function showArraysSuspect(arr) {
 	arr.forEach(function(eachItem) {
-		document.body.innerHTML += `<li>${eachItem.name}</li>`;
+		document.getElementById('displayInfoOne').innerHTML += `<li>${eachItem.name}</li>`;
 	});
+}
+function showArraysRoom(arr) {
+	arr.forEach(function(eachItem) {
+		document.getElementById('displayInfoTwo').innerHTML += `<li>${eachItem.name}</li>`;
+	});
+}
+function showArraysWeapon(arr) {
+	arr.forEach(function(eachItem) {
+		document.getElementById('displayInfoThree').innerHTML += `<li>${eachItem.name}</li>`;
+	});
+}
+
+document.querySelector('button').onclick = guessCharacter;
+
+function guessCharacter() {
+	let guessSuspect = document.querySelector('#suspect').value;
+	let guessRoom = document.querySelector('#room').value;
+	let guessWeapon = document.querySelector('#weapon').value;
+
+	if (
+		guessSuspect === mystery.suspect.name &&
+		guessRoom === mystery.room.name &&
+		guessWeapon === mystery.weapon.name
+	) {
+		document.getElementById('showCondition').innerHTML = ' ';
+		document.getElementById('showCondition').innerHTML = '<span class="winner">You win!!!</span>';
+		document.getElementById('showSolvedMystery').innerHTML = 'Congrats!';
+	} else {
+		document.getElementById('showCondition').innerHTML = '<span class="loser">You lose!!!</span>';
+		document.getElementById('showSolvedMystery').innerHTML =
+			'The answer is <b><span class="spoiler">' +
+			mystery.suspect.name +
+			'</b></span> killed Mr.Boddy in the <b><span class="spoiler">' +
+			mystery.room.name +
+			'</b></span> with the <b><span class="spoiler">' +
+			mystery.weapon.name +
+			'</b></span>' +
+			' <br><br><span class="smallText">Hover for spoilers</span>';
+	}
+	document.getElementById('hiddenName').style.visibility = 'visible';
+	document.getElementById('hiddenImage').style.visibility = 'visible';
+	document.getElementById('hiddenImage').src = mystery.suspect.image;
+	document.getElementById('hiddenImage').alt = mystery.suspect.name + ' photo';
+}
+document.getElementById('hiddenName').style.visibility = 'hidden';
+document.getElementById('hiddenImage').style.visibility = 'hidden';
+
+function refreshPage() {
+	window.location.reload('Refresh');
 }

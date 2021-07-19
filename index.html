@@ -1,5 +1,53 @@
-<h1>Cluedo JavaScript</h1>
-<input type="text" placeholder="Suspect" id="suspect" /> killed Mr. Boddy in the
-<input type="text" placeholder="Room" id="room" /> with the <input type="text" placeholder="Weapon" id="weapon" />
+<!-- <!DOCTYPE html> -->
+<html lang="en">
 
-<button>Guess who</button>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <title>Cluedo game using Javascript</title>
+</head>
+
+<body>
+    <header>
+        <h1>Cluedo JavaScript</h1>
+    </header>
+    <main id="container" class="container">
+        <div class="mainContent">
+            <input type="text" placeholder="Suspect" id="suspect" /> killed Mr. Boddy in the
+            <input type="text" placeholder="Room" id="room" /> with the <input type="text" placeholder="Weapon"
+                id="weapon" />
+
+            <button id="buttonGuess">Guess who</button>
+            <button onclick="refreshPage()">New mystery</button>
+        </div>
+
+        <div id="displayInfoWinLose">
+            <h2 id="showCondition"></h2>
+            <p id="showSolvedMystery"></p>
+        </div>
+
+        <div id="displayInfo">
+            <div id="displayInfoOne">
+                <h3>Characters</h3>
+            </div>
+            <div id="displayInfoTwo">
+                <h3>Weapons</h3>
+            </div>
+            <div id="displayInfoThree">
+                <h3>Rooms</h3>
+            </div>
+            <div id="displayInfoFour">
+                <h3 id="hiddenName">Hint: the killer</h3>
+                <img id="hiddenImage" src="" />
+            </div>
+        </div>
+
+    </main>
+
+</body>
+<script src="script.js"></script>
+
+</html>
