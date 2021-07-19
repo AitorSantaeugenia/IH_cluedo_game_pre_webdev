@@ -144,3 +144,8 @@ let roomsArray = [
 	guestHouse,
 	patio
 ];
+
+let randomRoom = roomsArray[Math.floor(Math.random() * roomsArray.length)];
+let randomWeapon = weaponsArray[Math.floor(Math.random() * weaponsArray.length)];
+
+console.log(randomRoom, randomWeapon);
