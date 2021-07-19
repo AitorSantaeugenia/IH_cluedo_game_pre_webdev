@@ -1,6 +1,7 @@
 // Suspects
 let mrGreen = {
 	nickname: 'mrGreen',
+	name: 'Jacob Green',
 	first_name: 'Jacob',
 	last_name: 'Green',
 	color: 'green',
@@ -12,6 +13,7 @@ let mrGreen = {
 
 let drOrchid = {
 	nickname: 'drOrchid',
+	name: 'Doctor Orchid',
 	first_name: 'Doctor',
 	last_name: 'Orchid',
 	color: 'white',
@@ -23,6 +25,7 @@ let drOrchid = {
 
 let profPlum = {
 	nickname: 'profPlum',
+	name: 'Victor Plum',
 	first_name: 'Victor',
 	last_name: 'Plum',
 	color: 'purple',
@@ -34,6 +37,7 @@ let profPlum = {
 
 let missScarlet = {
 	nickname: 'missScarlet',
+	name: 'Kasandra Scarlet',
 	first_name: 'Kasandra',
 	last_name: 'Scarlet',
 	color: 'red',
@@ -45,6 +49,7 @@ let missScarlet = {
 
 let mrsPeacock = {
 	nickname: 'mrsPeacock',
+	name: 'Eleanor Peacock',
 	first_name: 'Eleanor',
 	last_name: 'Peacock',
 	color: 'blue',
@@ -56,6 +61,7 @@ let mrsPeacock = {
 
 let mrMustard = {
 	nickname: 'mrMustard',
+	name: 'Jack Mustard',
 	first_name: 'Jack',
 	last_name: 'Mustard',
 	color: 'yellow',
@@ -145,7 +151,23 @@ let roomsArray = [
 	patio
 ];
 
+/*
 let randomRoom = roomsArray[Math.floor(Math.random() * roomsArray.length)];
 let randomWeapon = weaponsArray[Math.floor(Math.random() * weaponsArray.length)];
+let randomSuspect = suspectsArray[Math.floor(Math.random() * suspectsArray.length)];
+*/
 
-console.log(randomRoom, randomWeapon);
+//console.log(randomSuspect, randomRoom, randomWeapon);
+
+function pickMystery() {
+	let suspect = suspectsArray[Math.floor(Math.random() * suspectsArray.length)];
+	let weapon = weaponsArray[Math.floor(Math.random() * weaponsArray.length)];
+	let room = roomsArray[Math.floor(Math.random() * roomsArray.length)];
+
+	return { suspect, weapon, room };
+}
+
+let mystery = pickMystery();
+
+console.log(mystery);
+console.log(mystery.suspect.name, mystery.weapon.name, mystery.room.name);
