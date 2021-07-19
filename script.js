@@ -159,6 +159,7 @@ let randomSuspect = suspectsArray[Math.floor(Math.random() * suspectsArray.lengt
 
 //console.log(randomSuspect, randomRoom, randomWeapon);
 
+// Gets random item from each array and constructs the mystery
 function pickMystery() {
 	let suspect = suspectsArray[Math.floor(Math.random() * suspectsArray.length)];
 	let weapon = weaponsArray[Math.floor(Math.random() * weaponsArray.length)];
@@ -167,7 +168,24 @@ function pickMystery() {
 	return { suspect, weapon, room };
 }
 
-let mystery = pickMystery();
+let mystery = pickMystery(); // Who killed mr.boddy with what in which room...
 
+/*
 console.log(mystery);
-console.log(mystery.suspect.name, mystery.weapon.name, mystery.room.name);
+console.log(
+mystery.suspect.name,
+  mystery.weapon.name,
+  mystery.room.name
+);
+*/
+showArrays(suspectsArray);
+showArrays(weaponsArray);
+showArrays(roomsArray);
+
+function showArrays(arr) {
+	console.log(arr);
+
+	arr.forEach(function(eachItem) {
+		document.body.innerHTML += `<li>${eachItem.name}</li>`;
+	});
+}
